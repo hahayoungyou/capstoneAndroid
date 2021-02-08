@@ -3,8 +3,6 @@ package com.example.androidcapstone;
 import java.util.List;
 
 import retrofit2.Call;
-
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -33,15 +31,14 @@ public interface JsonApi {
     //@GET("/api/board/comment/1")
     //Call<List<CommentData>> getComment();
 
-    @PUT("/api/board/{no}")
-    Call<Void> updateBoardData(@Path("no") int no, @Body BoardData boardData);
-
-    @DELETE("/api/board/{no}")
-    Call<Void> deleteUser(@Path("no") int no);   //수정필요
 
     @GET("/api/board/comment/{num}")
     Call<List<CommentData>> getComment(@Path("num") Integer num);
 
-    @POST("api/board")
-    Call<BoardData> post_posts(@Body BoardData boardData);
+    @POST("api/board/comment")
+    Call<CommentData> addComment(@Body CommentData commentData);
+
+    @DELETE("/api/board/comment/{no}")
+    Call<Void> deleteComment(@Path("no") int no);
+
 }

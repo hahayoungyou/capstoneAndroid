@@ -47,7 +47,7 @@ public class ExpertFragment extends Fragment implements TextWatcher {
     TextView textView;
 
 
-    static final String URL = "http://172.30.1.58:8080";
+    static final String URL = "http://192.168.35.91:8080";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

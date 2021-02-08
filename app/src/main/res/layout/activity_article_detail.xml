@@ -28,17 +28,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-                android:id="@+id/write"
+                android:id="@+id/writeComment"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:text="✏"
                 android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/update"
+                android:layout_toEndOf="@+id/writeComment"
+                android:ems="10"
+                android:hint="댓글을 적고 연필을 눌러주세요."
+                android:inputType="textPersonName"
+                android:textSize="14sp" />
             <Button
                 android:id="@+id/update"
                 android:layout_width="70dp"
@@ -53,6 +65,8 @@
                 android:layout_alignParentRight="true"
                 android:text="삭제"
                 android:textSize="16sp" />
+
+
         </RelativeLayout>
 
         <View
@@ -74,51 +88,3 @@
 
     </LinearLayout>
 </ScrollView>
-
-<!--
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ArticleDetail">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="title"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="question"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:background="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/question" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentBottom="true"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
--->

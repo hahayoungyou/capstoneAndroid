@@ -25,6 +25,12 @@
             android:layout_marginTop="10dp"
             android:textSize="9dp" />
 
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="댓글 삭제" />
 
     </RelativeLayout>
     <View

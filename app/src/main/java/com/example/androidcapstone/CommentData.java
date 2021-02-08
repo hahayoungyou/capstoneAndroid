@@ -7,6 +7,7 @@ public class CommentData {
     Integer comment_like;
     String comment_id;
     Integer board_no;
+    String board_id;
 
     public Integer getComment_no() { return comment_no; }
 
@@ -32,6 +33,10 @@ public class CommentData {
 
     public void setBoard_no(Integer board_no) { this.board_no = board_no; }
 
+    public String getBoard_id() { return board_id; }
+
+    public void setBoard_id(String board_id) { this.board_id = board_id; }
+
     @Override
     public String toString() {
         return "{" +
@@ -41,6 +46,7 @@ public class CommentData {
                 ",\"comment_like\":\"" + comment_like + '\"' +
                 ",\"comment_id\":" + comment_id +
                 ",\"board_no\":\"" + board_no + '\"' +
+                ",\"board_id\":\"" + board_id + '\"' +
                 '}';
     }
 }

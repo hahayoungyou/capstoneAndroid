@@ -83,6 +83,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         intent.putExtra("title", dataList.get(pos).getTitle());
                         intent.putExtra("question", dataList.get(pos).getQuestion());
                         intent.putExtra("num", dataList.get(pos).getBoard_no());
+                        intent.putExtra("board_id", dataList.get(pos).getBoard_id());
                         v.getContext().startActivity(intent);
                     }
                 }
