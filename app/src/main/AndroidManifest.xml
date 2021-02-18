@@ -19,9 +19,11 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="04ca06472d927e2dc2ecd3fc2929246c" />
-        <activity android:name=".WritingBoard"></activity>
+        <activity android:name=".WritingBoard"
+            android:parentActivityName=".ArticleDetail"></activity>
         <activity android:name=".ArticleDetail" />
-        <activity android:name=".ArticleBoard" />
+        <activity android:name=".ArticleBoard"
+            android:parentActivityName=".MainActivity"> </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

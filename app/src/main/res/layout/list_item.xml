@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:padding="16dp"
-    android:background="#ffeed2">
+    android:background="#E7EDF7">
     <RelativeLayout
         android:id="@+id/item_wrapper"
         android:layout_width="match_parent"

@@ -14,6 +14,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //kakao map
+        ndk {
+            abiFilters 'arm64-v8a', 'armeabi', 'armeabi-v7a'
+        }
+
     }
 
     buildTypes {
@@ -45,8 +51,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
-    implementation fileTree(dir: 'src/main/jniLibs', include: ['*.aar', '*.jar'], exclude: [])
-    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation files('libs/libDaumMapAndroid.jar')
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

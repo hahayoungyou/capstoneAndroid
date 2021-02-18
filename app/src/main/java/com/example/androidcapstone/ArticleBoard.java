@@ -1,6 +1,7 @@
 package com.example.androidcapstone;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class ArticleBoard extends AppCompatActivity {
         name = intent.getExtras().getString("values");
         // ArticleMenuFragment에서 values값 받았다는 로그.
         Log.i("ArticleBoard", name);
+
+        //button.setBackgroundColor(ContextCompat.getColor(this, R.id.));
 
 
         button.setOnClickListener(new View.OnClickListener() {
