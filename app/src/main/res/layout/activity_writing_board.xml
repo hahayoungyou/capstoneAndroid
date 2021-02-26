@@ -52,5 +52,123 @@
             android:textSize="12dp"
             android:hint="여기를 눌러서 글을 작성할 수 있습니다."/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:background="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="태그를 달아주세요."
+            android:textSize="15dp"
+            android:gravity="center_horizontal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_centerInParent="true"
+            android:background="#FFFFFF"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tagSetting1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="         #"
+                android:textSize="12dp" />
+
+            <EditText
+                android:id="@+id/tag1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="태그"
+                android:inputType="textPersonName"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/tagSetting2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="         #"
+                android:textSize="12dp" />
+
+            <EditText
+                android:id="@+id/tag2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="태그"
+                android:inputType="textPersonName"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tagSetting3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="         #"
+                android:textSize="12dp" />
+
+            <EditText
+                android:id="@+id/tag3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="태그"
+                android:inputType="textPersonName"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/tagSetting4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="         #"
+                android:textSize="12dp" />
+
+            <EditText
+                android:id="@+id/tag4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="태그"
+                android:inputType="textPersonName"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tagSetting5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="         #"
+                android:textSize="12dp"/>
+
+            <EditText
+                android:id="@+id/tag5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="태그"
+                android:inputType="textPersonName"
+                android:textSize="12dp"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

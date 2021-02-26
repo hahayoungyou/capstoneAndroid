@@ -33,18 +33,34 @@
             android:layout_marginTop="5dp"
             android:textSize="18dp"
             android:textStyle="bold" />
-
-        <!--
         <TextView
-            android:id="@+id/question"
+            android:id="@+id/good"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="question"
-            android:layout_below="@+id/title"
-            android:layout_marginTop="5dp"
-            android:textSize="12dp"
-            android:textStyle="bold" />
-        -->
+            android:layout_toStartOf="@+id/goodnum"
+            android:layout_alignParentBottom="true"
+            android:text="👍 " />
+        <TextView
+            android:id="@+id/goodnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/comment"
+            android:layout_alignParentBottom="true"
+            android:text="num" />
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/commentnum"
+            android:layout_alignParentBottom="true"
+            android:text="   📄 " />
+        <TextView
+            android:id="@+id/commentnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="num" />
 
     </RelativeLayout>
     <View
@@ -52,6 +68,6 @@
         android:layout_marginTop="20dp"
         android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="10dp" />
 
 </RelativeLayout>

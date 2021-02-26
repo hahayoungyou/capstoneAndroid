@@ -28,8 +28,14 @@ public class WritingBoard extends AppCompatActivity {
     EditText editTextTitle;
     EditText editTextMultiLineBoard;
 
-    String category;
+    EditText tag1;
+    EditText tag2;
+    EditText tag3;
+    EditText tag4;
+    EditText tag5;
+
     Integer board_no;
+    Integer likecount;
 
     JsonApi jsonApi;
     Retrofit retrofit;
@@ -48,6 +54,12 @@ public class WritingBoard extends AppCompatActivity {
         editTextMultiLineBoard = (EditText)findViewById(R.id.editTextMultiLineBoard);
         button = (Button)findViewById(R.id.submit);
 
+        tag1 = (EditText)findViewById(R.id.tag1);
+        tag2 = (EditText)findViewById(R.id.tag2);
+        tag3 = (EditText)findViewById(R.id.tag3);
+        tag4 = (EditText)findViewById(R.id.tag4);
+        tag5 = (EditText)findViewById(R.id.tag5);
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -55,46 +67,60 @@ public class WritingBoard extends AppCompatActivity {
 
         jsonApi = retrofit.create(JsonApi.class);
 
-        String s1="edit";
-        if(mode.equals(s1)){
+        String edit="edit";
+        if(mode.equals(edit)){ // 글 수정 시
             button.setText("수정");
             board_no=intent.getExtras().getInt("board_no");
             editTextTitle.setText(intent.getExtras().getString("title"));
             editTextMultiLineBoard.setText(intent.getExtras().getString("question"));
-        }
-        else {
+            likecount = Integer.parseInt(intent.getExtras().getString("likecount"));
+            tag1.setText(intent.getExtras().getString("tag1"));
+            tag2.setText(intent.getExtras().getString("tag2"));
+            tag3.setText(intent.getExtras().getString("tag3"));
+            tag4.setText(intent.getExtras().getString("tag4"));
+            tag5.setText(intent.getExtras().getString("tag5"));
 
+        }
+        else { // 글 등록 시
             button.setText("등록");
         }
 
-
+        // 글 등록 또는 수정 버튼
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BoardData bd = new BoardData();
-                bd.title=editTextTitle.getText().toString();
-                bd.question=editTextMultiLineBoard.getText().toString();
-                if(mode.equals(s1)) {
+                bd.title = editTextTitle.getText().toString();
+                bd.question = editTextMultiLineBoard.getText().toString();
+                bd.board_like = likecount;
+                bd.tag1 = tag1.getText().toString();
+                bd.tag2 = tag2.getText().toString();
+                bd.tag3 = tag3.getText().toString();
+                bd.tag4 = tag4.getText().toString();
+                bd.tag5 = tag5.getText().toString();
+
+                if(mode.equals(edit)) { // 글 수정 시
                     updateBoard(bd);
                 }
-                else {
+                else { // 글 등록 시
                     bd.id="user3";
-                    bd.board_like=0;
+                    bd.board_like=2;
                     bd.category=ArticleBoard.name;
                     bd.board_date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new java.util.Date());
 
                     addBoard(bd);
                 }
+
+                // 글 수정 또는 등록 시 앞으로 넘어감
                 Intent intent2=new Intent(WritingBoard.this, ArticleBoard.class);
                 String name=ArticleBoard.name;
                 intent2.putExtra("values",name);
                 startActivity(intent2);
             }
         });
-
-
     }
 
+    // 글 등록 연결
     private void addBoard(BoardData b) {
         Call<BoardData> call = jsonApi.addPost(b);
         call.enqueue(new Callback<BoardData>() {
@@ -110,6 +136,7 @@ public class WritingBoard extends AppCompatActivity {
         });
     }
 
+    // 글 수정 연결
     private void updateBoard(BoardData b) {
         Call<Void> call = jsonApi.updatePost(board_no, b);
         call.enqueue(new Callback<Void>() {
@@ -124,7 +151,6 @@ public class WritingBoard extends AppCompatActivity {
                 Log.e("ERROR: ", t.getMessage());
             }
         });
-
     }
 
 }

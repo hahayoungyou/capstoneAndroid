@@ -35,6 +35,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
     static int num;
     int comment_no;
+    String comment_id;
 
     public RecyclerViewAdapter2(Context c, List<CommentData> dataList) {
         this.c = c;
@@ -53,6 +54,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     public void onBindViewHolder(@NonNull RecyclerViewAdapter2.ViewHolder holder, int position) {
 
         holder.answer.setText(dataList.get(position).getAnswer());
+        holder.comment_id.setText("작성자 : " + dataList.get(position).getComment_id());
         //holder.comment_date.setText(dataList.get(position).getComment_date());
 
         String str = dataList.get(position).getComment_date().toString();
@@ -73,6 +75,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
         TextView answer;
         TextView comment_date;
+        TextView comment_id;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -86,6 +89,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
             answer = (TextView)itemView.findViewById(R.id.answer);
             comment_date = (TextView)itemView.findViewById(R.id.comment_date);
+            comment_id = (TextView)itemView.findViewById(R.id.comment_id);
 
             button=(Button)itemView.findViewById(R.id.button3);
             button.setOnClickListener(new View.OnClickListener() {
@@ -126,10 +130,6 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
                 }
             });
-
-
-
-
 
         }
 

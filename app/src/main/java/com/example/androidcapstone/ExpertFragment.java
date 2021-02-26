@@ -112,8 +112,6 @@ public class ExpertFragment extends Fragment implements TextWatcher {
                     recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), dataList);
                     recyclerView.setAdapter(recyclerViewAdapter);
 
-                    //textView = (TextView)mView.findViewById(R.id.text);
-                    //textView.setText(response.body().toString());
                 } else {
                     Log.d("log", "Status Code " + response.code());
                 }

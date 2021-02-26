@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="93dp"
+                android:layout_height="53dp" />
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="205dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/spinner"
+                android:ems="10"
+                android:hint="검색"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="82dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_toEndOf="@+id/search"
+                android:text="검색"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
+
+</FrameLayout>
