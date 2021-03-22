@@ -87,13 +87,13 @@ public class ArticleDetail extends AppCompatActivity {
         String mTag1 = intent.getExtras().getString("tag1");
         tag1.setText(mTag1);
         String mTag2 = intent.getExtras().getString("tag2");
-        tag1.setText(mTag2);
+        tag2.setText(mTag2);
         String mTag3 = intent.getExtras().getString("tag3");
-        tag1.setText(mTag3);
+        tag3.setText(mTag3);
         String mTag4 = intent.getExtras().getString("tag4");
-        tag1.setText(mTag4);
+        tag4.setText(mTag4);
         String mTag5 = intent.getExtras().getString("tag5");
-        tag1.setText(mTag5);
+        tag5.setText(mTag5);
 
 
         num = intent.getExtras().getInt("num");

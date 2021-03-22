@@ -33,10 +33,12 @@ public interface JsonApi {
     Call<Void> deletePost(@Path("no") int no);
 
     // 글 검색
-    @GET("/api/board/search/{keyword}/{searchType}")
-    Call<List<BoardData>> getSearchBoards(@Path(value = "keyword") String keyword,
-                                          @Path(value = "searchType") String searchType);
+    @GET("/api/board/search/{keyword}")
+    Call<List<BoardData>> getSearchBoards(@Path(value = "keyword") String keyword);
 
+    // hot 게시물 조회
+    @GET("/api/board/hot")
+    Call<List<BoardData>> getBoard();
 
 
     /**
@@ -51,9 +53,18 @@ public interface JsonApi {
     @POST("api/board/comment")
     Call<CommentData> addComment(@Body CommentData commentData);
 
+    // 댓글 수정
+    @PUT("/api/board/comment/{no}")
+    Call<Void> updateComment(@Path("no") Integer no, @Body CommentData commentData);
+
     // 댓글 삭제
     @DELETE("/api/board/comment/{no}")
     Call<Void> deleteComment(@Path("no") int no);
+
+
+    /**
+     * 지도 관련
+     */
 
     // 지도
     @GET("/v2/local/search/keyword.json?{format}")

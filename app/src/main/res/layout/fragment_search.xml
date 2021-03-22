@@ -14,33 +14,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!--
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="93dp"
                 android:layout_height="53dp" />
+                -->
 
             <EditText
                 android:id="@+id/search"
-                android:layout_width="205dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:layout_toEndOf="@+id/spinner"
-                android:ems="10"
-                android:hint="검색"
+                android:ems="15"
+                android:hint="전체 게시글에서 검색"
                 android:textSize="15sp" />
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="82dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_toEndOf="@+id/search"
-                android:text="검색"
-                android:textSize="18sp" />
+                android:text="🔍"
+                android:textSize="15sp" />
 
         </RelativeLayout>
 

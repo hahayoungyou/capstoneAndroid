@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,10 +13,158 @@
         android:text="hello_home_fragment" />
     -->
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonsearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🔍" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/mainImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/good"
+                android:padding="10dp"/>
+
+            <TextView
+                android:id="@+id/mainTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="덕분에"
+                android:layout_toEndOf="@+id/mainImage"
+                android:textSize="22sp"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/buttonsearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔍"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toTopOf="@+id/layout2"
+            android:layout_margin="8dp"
+            android:background="@drawable/round_border"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="인기 있는 태그"
+                android:textColor="@color/black"
+                android:padding="15dp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="      #"
+                    android:padding="5dp" />
+                <TextView
+                    android:id="@+id/tag01"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="인"
+                    android:padding="5dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  #"
+                    android:padding="5dp" />
+                <TextView
+                    android:id="@+id/tag02"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="기"
+                    android:padding="5dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  #"
+                    android:padding="5dp" />
+                <TextView
+                    android:id="@+id/tag03"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="있는"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="      #"
+                    android:padding="5dp" />
+                <TextView
+                    android:id="@+id/tag04"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="태"
+                    android:padding="5dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  #"
+                    android:padding="5dp" />
+                <TextView
+                    android:id="@+id/tag05"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="그"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:background="@drawable/round_border"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hot 게시물"
+                android:textColor="@color/black"
+                android:padding="15dp"
+                android:textStyle="bold"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/hot_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 </FrameLayout>

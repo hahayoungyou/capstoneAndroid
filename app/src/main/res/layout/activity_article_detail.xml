@@ -16,13 +16,17 @@
                 android:id="@+id/user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="userNickname" />
+                android:text="userNickname"
+                android:textSize="12sp"
+                android:padding="5dp"/>
             <TextView
                 android:id="@+id/datetime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="datetime" />
+                android:text="datetime"
+                android:textSize="12sp"
+                android:padding="5dp"/>
         </RelativeLayout>
 
         <TextView
@@ -30,19 +34,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="title"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="8dp"/>
 
         <TextView
             android:id="@+id/question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="question"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            android:padding="8dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,48 +57,58 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  #" />
+                android:text=" #"
+                android:padding="5dp"/>
             <TextView
                 android:id="@+id/tag1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="    " />
+                android:text="    "
+                android:padding="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  #" />
+                android:text="#"
+                android:padding="5dp"/>
             <TextView
                 android:id="@+id/tag2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="    " />
+                android:text="    "
+                android:padding="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  #" />
+                android:text="#"
+                android:padding="5dp"/>
             <TextView
                 android:id="@+id/tag3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="    " />
+                android:text="    "
+                android:padding="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  #" />
+                android:text="#"
+                android:padding="5dp"/>
             <TextView
                 android:id="@+id/tag4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="    " />
+                android:text="    "
+                android:padding="5dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  #" />
+                android:text="#"
+                android:padding="5dp"/>
             <TextView
                 android:id="@+id/tag5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="    " />
+                android:text="    "
+                android:padding="5dp"/>
 
         </LinearLayout>
 
@@ -110,8 +126,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text=" 👍 "
-                    android:textSize="16sp" />
+                    android:text=" 👍"
+                    android:textSize="16sp"
+                    android:padding="5dp"/>
                 <TextView
                     android:id="@+id/goodcount"
                     android:layout_width="wrap_content"
@@ -119,15 +136,17 @@
                     android:layout_toEndOf="@+id/good"
                     android:layout_centerVertical="true"
                     android:text="num"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:padding="5dp"/>
                 <TextView
                     android:id="@+id/comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/goodcount"
                     android:layout_centerVertical="true"
-                    android:text="   📄 "
-                    android:textSize="16sp" />
+                    android:text="   📄"
+                    android:textSize="16sp"
+                    android:padding="5dp"/>
                 <TextView
                     android:id="@+id/commentcount"
                     android:layout_width="wrap_content"
@@ -135,27 +154,31 @@
                     android:layout_toEndOf="@+id/comment"
                     android:layout_centerVertical="true"
                     android:text="num"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:padding="5dp"/>
                 <Button
                     android:id="@+id/like"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@+id/update"
-                    android:text="👍"/>
+                    android:text="👍"
+                    android:layout_margin="3dp"/>
                 <Button
                     android:id="@+id/update"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@+id/delete"
                     android:text="수정"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:layout_margin="3dp"/>
                 <Button
                     android:id="@+id/delete"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="삭제"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:layout_margin="3dp"/>
 
             </RelativeLayout>
 
@@ -182,7 +205,8 @@
                     android:layout_toEndOf="@+id/editTextComment"
                     android:text="✏"
                     android:layout_alignParentRight="true"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_margin="5dp"/>
 
             </RelativeLayout>
 

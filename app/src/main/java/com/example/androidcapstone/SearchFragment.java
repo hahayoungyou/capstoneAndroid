@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class SearchFragment extends Fragment {
     EditText editSearch;
     EditText textView;
 
-
+    //static final String URL = "http://223.194.133.185:8080";
     static final String URL = "http://192.168.35.91:8080";
 
     @Override
@@ -57,7 +58,8 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_search, container, false);
 
-
+        /*
+        // 스피너
         final String[] spi = new String[1];
         spinner= (Spinner)view.findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,schools);
@@ -78,6 +80,8 @@ public class SearchFragment extends Fragment {
             }
         });
 
+         */
+
 
         // retrofit 통신 연결 - Spring 웹 서버와 연결
         retrofit = new Retrofit.Builder()
@@ -90,13 +94,53 @@ public class SearchFragment extends Fragment {
         jsonApi = retrofit.create(JsonApi.class);
 
 
-
-
         editSearch = (EditText)view.findViewById(R.id.search);
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
 
-        textView=(EditText)view.findViewById(R.id.search);
-        Button button=(Button)view.findViewById(R.id.button);
+        textView = (EditText)view.findViewById(R.id.search);
+
+        textView.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //Enter key Action
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Enter키 눌렀을 때 검색 버튼 눌리는 기능이랑 똑같이.
+                    Callback<List<BoardData>> callback = new Callback<List<BoardData>>() {
+                        @RequiresApi(api = Build.VERSION_CODES.N)
+                        @Override
+                        public void onResponse(Call<List<BoardData>> call, Response<List<BoardData>> response) {
+                            if (response.isSuccessful()) {
+                                // dataList.notifyAll();
+                                dataList2 = response.body();
+                                Log.d("ExpertFragment", dataList2.toString());
+
+                                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//                            dataList2.notifyAll();
+                                recyclerViewAdapter = new RecyclerViewAdapter(getContext(), dataList2);
+                                recyclerView.setAdapter(recyclerViewAdapter);
+
+                                //textView = (TextView)mView.findViewById(R.id.text);
+                                //textView.setText(response.body().toString());
+                            } else {
+                                Log.d("log", "Status Code " + response.code());
+                                //Log.d("log", textView.getText().toString());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<BoardData>> call, Throwable t) {
+                            Log.d("log", "Fail");
+                            //t.printStackTrace();
+                        }
+                    };
+                    jsonApi.getSearchBoards(textView.getText().toString()).enqueue(callback);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        Button button = (Button)view.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +172,7 @@ public class SearchFragment extends Fragment {
                         //t.printStackTrace();
                     }
                 };
-                jsonApi.getSearchBoards(textView.getText().toString(), spi[0]).enqueue(callback);
+                jsonApi.getSearchBoards(textView.getText().toString()).enqueue(callback);
             }
         });
         return view;
