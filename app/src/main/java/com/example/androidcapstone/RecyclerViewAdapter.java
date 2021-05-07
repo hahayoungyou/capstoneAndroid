@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.title.setText(dataList.get(position).getTitle());
         //holder.board_date.setText(dataList.get(position).getBoard_date().toString());
         holder.goodnum.setText(dataList.get(position).getBoard_like().toString());
+        holder.commentnum.setText(dataList.get(position).getCommentcount().toString());
 
         String str = dataList.get(position).getBoard_date();
         String date = str.substring(0, str.indexOf("T"));
@@ -68,6 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView title;
         TextView board_date;
         TextView goodnum;
+        TextView commentnum;
 
         TextView tag1;
         TextView tag2;
@@ -75,18 +78,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView tag4;
         TextView tag5;
 
+        ImageView filepath;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             board_no = (TextView)itemView.findViewById(R.id.board_no);
             title = (TextView)itemView.findViewById(R.id.title);
             board_date = (TextView)itemView.findViewById(R.id.board_date);
             goodnum = (TextView)itemView.findViewById(R.id.goodnum);
+            commentnum = (TextView)itemView.findViewById(R.id.commentnum);
 
             tag1 = (TextView)itemView.findViewById(R.id.tag1);
             tag2 = (TextView)itemView.findViewById(R.id.tag2);
             tag3 = (TextView)itemView.findViewById(R.id.tag3);
             tag4 = (TextView)itemView.findViewById(R.id.tag4);
             tag5 = (TextView)itemView.findViewById(R.id.tag5);
+
+            filepath = (ImageView)itemView.findViewById(R.id.boardImage);
 
             // item click 시 ArticleDetail로 title, question, ..., tag 모두 보내줌
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -101,12 +109,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         intent.putExtra("num", dataList.get(pos).getBoard_no());
                         intent.putExtra("board_id", dataList.get(pos).getBoard_id());
                         intent.putExtra("goodcount", dataList.get(pos).getBoard_like().toString());
+                        intent.putExtra("commentcount", dataList.get(pos).getCommentcount().toString());
 
                         intent.putExtra("tag1", dataList.get(pos).getTag1());
                         intent.putExtra("tag2", dataList.get(pos).getTag2());
                         intent.putExtra("tag3", dataList.get(pos).getTag3());
                         intent.putExtra("tag4", dataList.get(pos).getTag4());
                         intent.putExtra("tag5", dataList.get(pos).getTag5());
+
+                        intent.putExtra("filepath", dataList.get(pos).getFilepath());
 
                         String str = dataList.get(pos).getBoard_date();
                         String date = str.substring(0, str.indexOf("T"));

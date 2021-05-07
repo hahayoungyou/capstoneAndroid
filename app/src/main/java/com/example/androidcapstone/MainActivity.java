@@ -1,8 +1,10 @@
 package com.example.androidcapstone;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment homeFragment;
     ArticleMenuFragment articleMenuFragment;
     InfoFragment infoFragment;
+    String token = null;
 
     private ActivityMainBinding binding;
 
@@ -31,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // titlebar 없애기
+        ActionBar bar = getSupportActionBar();
+        bar.hide();
 
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
@@ -44,6 +51,19 @@ public class MainActivity extends AppCompatActivity {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+
+        //authToken = AuthenticationInterceptor
+
+        // main 들어가기 전 login 페이지 나오도록.
+        if(token == null) {
+            Intent LoginIntent = new Intent(MainActivity.this, Login.class);
+            startActivity(LoginIntent);
+            finish();
+        } else {
+
+        }
+
+
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 

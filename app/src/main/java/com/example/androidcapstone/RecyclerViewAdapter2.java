@@ -34,6 +34,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
     JsonApi jsonApi;
 
     static final String URL = "http://192.168.35.91:8080";
+    //static final String URL = "http://172.16.66.211:8080";
 
     static int num;
     int comment_no;

@@ -13,6 +13,16 @@ import retrofit2.http.Query;
 
 public interface JsonApi {
     /**
+     * 멤버 관련
+     */
+
+    // 멤버 조회
+    @GET("/api/board/authenticate")
+    Call<UserDto> getUser(UserDto userDto);
+
+
+
+    /**
      * 글 관련
      */
 
@@ -38,7 +48,11 @@ public interface JsonApi {
 
     // hot 게시물 조회
     @GET("/api/board/hot")
-    Call<List<BoardData>> getBoard();
+    Call<List<BoardData>> getHotBoard();
+
+    // 인기 태그 조회
+    @GET("/api/board/ptag")
+    Call<List> getPopularTag();
 
 
     /**

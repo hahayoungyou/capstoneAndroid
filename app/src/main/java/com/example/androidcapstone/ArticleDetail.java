@@ -1,28 +1,42 @@
 package com.example.androidcapstone;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.androidcapstone.databinding.ActivityArticleDetailBinding;
 
 import org.w3c.dom.Comment;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,26 +56,44 @@ public class ArticleDetail extends AppCompatActivity {
     RecyclerView recyclerView2;
     RecyclerViewAdapter2 recyclerViewAdapter2;
 
+    MenuItem menuItem;
+
+    TextView user;
+    TextView datetime;
+    TextView title;
+    TextView question;
+    TextView tag1;
+    TextView tag2;
+    TextView tag3;
+    TextView tag4;
+    TextView tag5;
+    TextView goodcount;
+    TextView commentcount;
+    ImageView boardImage;
+
     static final String URL = "http://192.168.35.91:8080";
+    //static final String URL = "http://223.194.158.215:8080";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);
 
-        TextView user = (TextView)findViewById(R.id.user);
-        TextView datetime = (TextView)findViewById(R.id.datetime);
-        TextView title = (TextView)findViewById(R.id.title);
-        TextView question = (TextView)findViewById(R.id.question);
+        user = (TextView)findViewById(R.id.user);
+        datetime = (TextView)findViewById(R.id.datetime);
+        title = (TextView)findViewById(R.id.title);
+        question = (TextView)findViewById(R.id.question);
 
-        TextView tag1 = (TextView)findViewById(R.id.tag1);
-        TextView tag2 = (TextView)findViewById(R.id.tag2);
-        TextView tag3 = (TextView)findViewById(R.id.tag3);
-        TextView tag4 = (TextView)findViewById(R.id.tag4);
-        TextView tag5 = (TextView)findViewById(R.id.tag5);
+        tag1 = (TextView)findViewById(R.id.tag1);
+        tag2 = (TextView)findViewById(R.id.tag2);
+        tag3 = (TextView)findViewById(R.id.tag3);
+        tag4 = (TextView)findViewById(R.id.tag4);
+        tag5 = (TextView)findViewById(R.id.tag5);
 
-        TextView goodcount = (TextView)findViewById(R.id.goodcount);
-        TextView commentcount = (TextView)findViewById(R.id.commentcount);
+        goodcount = (TextView)findViewById(R.id.goodcount);
+        commentcount = (TextView)findViewById(R.id.commentcount);
+
+        boardImage = (ImageView)findViewById(R.id.boardImage);
 
         Intent intent = getIntent();
 
@@ -80,8 +112,8 @@ public class ArticleDetail extends AppCompatActivity {
         String mGoodcount = intent.getExtras().getString("goodcount");
         goodcount.setText(mGoodcount);
 
-        //String mCommentcount = intent.getExtras().getString("commentcount");
-        //commentcount.setText(mCommentcount);
+        String mCommentcount = intent.getExtras().getString("commentcount");
+        commentcount.setText(mCommentcount);
 
         // 태그 조회
         String mTag1 = intent.getExtras().getString("tag1");
@@ -95,6 +127,18 @@ public class ArticleDetail extends AppCompatActivity {
         String mTag5 = intent.getExtras().getString("tag5");
         tag5.setText(mTag5);
 
+        // 이미지 조회 (drawble말고 assets사용한 bitmap)
+        String mFilepath = intent.getExtras().getString("filepath");
+        AssetManager am = getResources().getAssets();
+        InputStream is = null;
+        try {
+            if(mFilepath == null)   is = am.open("noimg.PNG");
+            else is = am.open(mFilepath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Bitmap bm = BitmapFactory.decodeStream(is);
+        boardImage.setImageBitmap(bm);
 
         num = intent.getExtras().getInt("num");
 
@@ -118,6 +162,11 @@ public class ArticleDetail extends AppCompatActivity {
                 bd.question = question.getText().toString();
                 bd.board_like = Integer.parseInt(goodcount.getText().toString());
                 bd.board_like++;
+                bd.tag1 = tag1.getText().toString();
+                bd.tag2 = tag2.getText().toString();
+                bd.tag3 = tag3.getText().toString();
+                bd.tag4 = tag4.getText().toString();
+                bd.tag5 = tag5.getText().toString();
                 updateLike(bd);
             }
         });
@@ -133,6 +182,7 @@ public class ArticleDetail extends AppCompatActivity {
                 intent.putExtra("title", title.getText().toString());
                 intent.putExtra("question", question.getText().toString());
                 intent.putExtra("likecount", goodcount.getText().toString());
+                intent.putExtra("commentcount", commentcount.getText().toString());
                 intent.putExtra("tag1", tag1.getText().toString());
                 intent.putExtra("tag2", tag2.getText().toString());
                 intent.putExtra("tag3", tag3.getText().toString());
@@ -204,7 +254,6 @@ public class ArticleDetail extends AppCompatActivity {
         };
         jsonApi.getComment(num).enqueue(callback);
 
-
     }
 
     // 글 삭제 연결
@@ -265,5 +314,7 @@ public class ArticleDetail extends AppCompatActivity {
             }
         });
     }
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.androidcapstone;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -21,19 +22,26 @@ public class ArticleBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_board);
 
+        // titlebar 없애기
+        ActionBar bar = getSupportActionBar();
+        bar.hide();
+
         expertFragment = new ExpertFragment();
 
         // 제일 먼저 띄워줄 뷰 세팅
         getSupportFragmentManager().beginTransaction().replace(R.id.container,expertFragment).commitAllowingStateLoss();
 
+        /*
+        // 지도 기능 없앰.
         Button button = findViewById(R.id.button); // 글 목록 나오도록.
         Button button2 = findViewById(R.id.button2); // 지도 나오도록.
-
+         */
         Intent intent = getIntent();
         name = intent.getExtras().getString("values");
         // ArticleMenuFragment에서 values값 받았다는 로그.
         Log.i("ArticleBoard", name);
 
+        /*
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +56,8 @@ public class ArticleBoard extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, new MapFragment()).commit();
             }
         });
+
+         */
     }
 
     public String getMyData(){

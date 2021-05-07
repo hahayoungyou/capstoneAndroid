@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class HomeFragment extends Fragment {
     Retrofit retrofit;
     JsonApi jsonApi;
     List<BoardData> dataList;
+    List list;
 
     String data;
 
@@ -38,9 +40,15 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     HotRecyclerViewAdapter hotRecyclerViewAdapter;
 
+    TextView tag01;
+    TextView tag02;
+    TextView tag03;
+    TextView tag04;
+    TextView tag05;
+
 
     static final String URL = "http://192.168.35.91:8080";
-
+    //static final String URL = "http://223.194.158.215:8080";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +87,48 @@ public class HomeFragment extends Fragment {
 
         jsonApi = retrofit.create(JsonApi.class);
 
+        tag01 = (TextView) mView.findViewById(R.id.tag01);
+        tag02 = (TextView) mView.findViewById(R.id.tag02);
+        tag03 = (TextView) mView.findViewById(R.id.tag03);
+        tag04 = (TextView) mView.findViewById(R.id.tag04);
+        tag05 = (TextView) mView.findViewById(R.id.tag05);
+
+        // 인기 태그 web-server와 연결
+        Callback<List> callbacks = new Callback<List>() {
+            @Override
+            public void onResponse(Call<List> call, Response<List> response) {
+                if(response.isSuccessful()) {
+                    list = response.body();
+                    Log.d("tag", list.toString());
+
+                    String str01 = list.get(0).toString();
+                    String str1 = str01.substring(1, str01.indexOf(","));
+                    String str02 = list.get(1).toString();
+                    String str2 = str02.substring(1, str02.indexOf(","));
+                    String str03 = list.get(2).toString();
+                    String str3 = str03.substring(1, str03.indexOf(","));
+                    String str04 = list.get(3).toString();
+                    String str4 = str04.substring(1, str04.indexOf(","));
+                    String str05 = list.get(4).toString();
+                    String str5 = str05.substring(1, str05.indexOf(","));
+
+                    tag01.setText(str1);
+                    tag02.setText(str2);
+                    tag03.setText(str3);
+                    tag04.setText(str4);
+                    tag05.setText(str5);
+                } else {
+                    Log.d("tag", "Status Code " + response.code());
+                }
+            }
+            @Override
+            public void onFailure(Call<List> call, Throwable t) {
+                Log.d("tag", "Fail");
+            }
+        };
+        jsonApi.getPopularTag().enqueue(callbacks);
+
+        // hot 게시물 web-server와 연결
         Callback<List<BoardData>> callback = new Callback<List<BoardData>>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -91,15 +141,15 @@ public class HomeFragment extends Fragment {
                     hotRecyclerViewAdapter = new HotRecyclerViewAdapter(getActivity(), dataList);
                     recyclerView.setAdapter(hotRecyclerViewAdapter);
                 } else {
-                    Log.d("log", "Status Code " + response.code());
+                    Log.d("hot", "Status Code " + response.code());
                 }
             }
             @Override
             public void onFailure(Call<List<BoardData>> call, Throwable t) {
-                Log.d("log", "Fail");
+                Log.d("hot", "Fail");
             }
         };
-        jsonApi.getBoard().enqueue(callback);
+        jsonApi.getHotBoard().enqueue(callback);
 
 
 

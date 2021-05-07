@@ -36,6 +36,7 @@ public class HotRecyclerViewAdapter extends RecyclerView.Adapter<HotRecyclerView
         holder.hotBoard_no.setText(dataList.get(position).getBoard_no().toString());
         holder.hotTitle.setText(dataList.get(position).getTitle());
         holder.hotGoodnum.setText(dataList.get(position).getBoard_like().toString());
+        holder.hotCommentnum.setText(dataList.get(position).getCommentcount().toString());
 
         String str = dataList.get(position).getBoard_date();
         String date = str.substring(0, str.indexOf("T"));
@@ -54,16 +55,8 @@ public class HotRecyclerViewAdapter extends RecyclerView.Adapter<HotRecyclerView
         TextView hotTitle;
         TextView hotBoard_date;
         TextView hotGoodnum;
-        //TextView hotCommentnum;
+        TextView hotCommentnum;
 
-        /*
-        TextView tag1;
-        TextView tag2;
-        TextView tag3;
-        TextView tag4;
-        TextView tag5;
-
-         */
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,15 +64,8 @@ public class HotRecyclerViewAdapter extends RecyclerView.Adapter<HotRecyclerView
             hotTitle = (TextView)itemView.findViewById(R.id.hotTitle);
             hotBoard_date = (TextView)itemView.findViewById(R.id.hotBoard_date);
             hotGoodnum = (TextView)itemView.findViewById(R.id.hotGoodnum);
+            hotCommentnum = (TextView)itemView.findViewById(R.id.hotCommentnum);
 
-            /*
-            tag1 = (TextView)itemView.findViewById(R.id.tag1);
-            tag2 = (TextView)itemView.findViewById(R.id.tag2);
-            tag3 = (TextView)itemView.findViewById(R.id.tag3);
-            tag4 = (TextView)itemView.findViewById(R.id.tag4);
-            tag5 = (TextView)itemView.findViewById(R.id.tag5);
-
-             */
 
             // item click 시 ArticleDetail로 title, question, ..., tag 모두 보내줌
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +81,7 @@ public class HotRecyclerViewAdapter extends RecyclerView.Adapter<HotRecyclerView
                         intent.putExtra("board_id", dataList.get(pos).getBoard_id());
                         intent.putExtra("board_id", dataList.get(pos).getBoard_id());
                         intent.putExtra("goodcount", dataList.get(pos).getBoard_like().toString());
+                        intent.putExtra("commentcount", dataList.get(pos).getCommentcount().toString());
 
                         intent.putExtra("tag1", dataList.get(pos).getTag1());
                         intent.putExtra("tag2", dataList.get(pos).getTag2());
