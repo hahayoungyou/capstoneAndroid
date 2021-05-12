@@ -3,12 +3,13 @@ package com.example.androidcapstone;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,10 +27,16 @@ public class Login extends AppCompatActivity {
     EditText editTextPwd;
     Button loginSubmit;
 
+    static String token;
+
+    public static Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mContext = this;
 
         // titlebar 없애기
         ActionBar bar = getSupportActionBar();
@@ -43,44 +50,50 @@ public class Login extends AppCompatActivity {
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        jsonApi = retrofit.create(JsonApi.class);
 
         loginSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UserDto u = new UserDto();
-                //u.userName =
                 u.setUserName(editTextID.getText().toString());
                 u.setPassword(editTextPwd.getText().toString());
 
-                /*
-                String TOKEN = getToken(); // access token 가져오는 함수 직접 만들기
-                jsonApi = ServiceGenerator.createService(JsonApi.class, TOKEN);
-
-                 */
                 loadAll(u);
             }
         });
-
-
     }
 
     private void loadAll(UserDto userDto) {
-        jsonApi.getUser(userDto).enqueue(new Callback<UserDto>() {
+
+        jsonApi.SignIn(userDto).enqueue(new Callback<AuthenticationResponse>() {
             @Override
-            public void onResponse(Call<UserDto> call, Response<UserDto> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(Login.this, "Login success", Toast.LENGTH_LONG).show();
-                } else {
-                    Log.d("REST FAILED MESSAGE", response.message());
-                }
+            public void onResponse(Call<AuthenticationResponse> call, Response<AuthenticationResponse> response) {
+                token = response.body().getJwt();
+
+                Log.i("token", token);
+
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                intent.putExtra("token", token);
+                startActivity(intent);
+
+//                session이나 쿠키에 저장
+//                localStorage.setItem("token", token);
+//                console.log(" token is " + token);
+
             }
 
             @Override
-            public void onFailure(Call<UserDto> call, Throwable t) {
-                Log.d("RESTM ERROR!", t.getMessage());
+            public void onFailure(Call call, Throwable t) {
+                Log.i("fail",t.getMessage());
             }
+
+
         });
+
     }
 
+
+    public static String getTokens() { return token; }
 
 }

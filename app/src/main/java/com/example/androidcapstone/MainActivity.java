@@ -26,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment homeFragment;
     ArticleMenuFragment articleMenuFragment;
     InfoFragment infoFragment;
-    String token = null;
 
     private ActivityMainBinding binding;
+
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +55,10 @@ public class MainActivity extends AppCompatActivity {
 
         //authToken = AuthenticationInterceptor
 
-        // main 들어가기 전 login 페이지 나오도록.
-        if(token == null) {
-            Intent LoginIntent = new Intent(MainActivity.this, Login.class);
-            startActivity(LoginIntent);
-            finish();
-        } else {
 
-        }
+
+        Intent getIntent = getIntent();
+        token = getIntent.getExtras().getString("token");
 
 
 
@@ -99,11 +96,12 @@ public class MainActivity extends AppCompatActivity {
                     default: return false;
                 }
 
-
-
-
             }
         });
 
+    }
+
+    public String getMyToken(){
+        return token;
     }
 }

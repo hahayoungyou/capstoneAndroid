@@ -19,7 +19,13 @@
         <activity android:name=".Signup"></activity>
         <activity android:name=".WritingPromotion" />
         <activity android:name=".PromotionDetail" />
-        <activity android:name=".Login" />
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".PromotionBoard" />
 
         <meta-data
@@ -31,13 +37,8 @@
         <activity
             android:name=".ArticleBoard"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".MainActivity" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

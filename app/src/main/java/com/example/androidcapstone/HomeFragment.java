@@ -17,8 +17,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.List;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,6 +52,7 @@ public class HomeFragment extends Fragment {
     TextView tag04;
     TextView tag05;
 
+    String token;
 
     static final String URL = "http://192.168.35.91:8080";
     //static final String URL = "http://223.194.158.215:8080";
@@ -77,10 +84,27 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        MainActivity activity = (MainActivity) getActivity();
+        token = activity.getMyToken();
 
         recyclerView = (RecyclerView)mView.findViewById(R.id.hot_recyclerview);
 
+        /*
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @NotNull
+            @Override
+            public okhttp3.Response intercept(@NotNull Chain chain) throws IOException {
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer" + token)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+
+         */
+
         retrofit = new Retrofit.Builder()
+                //.client(client)
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -151,8 +175,7 @@ public class HomeFragment extends Fragment {
         };
         jsonApi.getHotBoard().enqueue(callback);
 
-
-
         return mView;
     }
+
 }

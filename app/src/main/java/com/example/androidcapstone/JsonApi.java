@@ -1,25 +1,31 @@
 package com.example.androidcapstone;
 
+import android.util.Log;
+
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface JsonApi {
+
+    static final String tr = ((Login) Login.mContext).getTokens();
+
     /**
      * 멤버 관련
      */
 
     // 멤버 조회
-    @GET("/api/board/authenticate")
-    Call<UserDto> getUser(UserDto userDto);
-
+    @POST("/authenticate")
+    Call<AuthenticationResponse> SignIn(@Body UserDto userDto);
 
 
     /**
